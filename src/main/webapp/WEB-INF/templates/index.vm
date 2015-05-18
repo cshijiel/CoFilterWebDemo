@@ -1,0 +1,55 @@
+#parse("html/header.vm")
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="#">给电影评价最多的用户</a>
+          <a class="blog-nav-item " href="#">与他看电影习惯最相似的用户</a>
+          <a class="blog-nav-item" href="#">推荐的电影</a>
+          <a class="blog-nav-item blog-nav-item-right" id="about" data-container="body" title="给用户个人信息" data-trigger="focus" data-placement="bottom" data-content="在其他页面会有个人信息，本页面没有的" href="#">About</a>
+          <a class="blog-nav-item blog-nav-item-right" href="${rc.contextPath}/similar-users-from-random">随机用户</a>
+        </nav>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="blog-header">
+        <h1 class="blog-title">协同过滤推荐算法Demo</h1>
+        <p class="lead blog-description">给电影评价最多的用户</p>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>P.K.</th>
+                  <th>性别</th>
+                  <th>年龄</th>
+                  <th>职业</th>             
+                </tr>
+              </thead>
+              <tbody>
+				#foreach ($u in $topUsers)
+                <tr>
+                  <th scope="row">$velocityCount</th>
+                  <td><a href="${rc.contextPath}/similar-users?fromUser=$!{u.id}">$!{u.id}</a></td>
+                  <td>$!{u.gender}</td>
+                  <td>$!{u.age}</td>
+                  <td>$!{u.occupation}</td>
+                </tr>
+                #end
+              </tbody>
+            </table>
+            
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+      </div><!-- /.row -->
+    </div>
+
+
+#parse("html/footer.vm")

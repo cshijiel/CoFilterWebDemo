@@ -1,0 +1,55 @@
+#parse("html/header.vm")
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item" href="${rc.contextPath}/">给电影评价最多的用户</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/similar-users?fromUser=$!{user.id}">与他看电影习惯最相似的用户</a>
+          <a class="blog-nav-item active" href="#">推荐的电影</a>
+          <a class="blog-nav-item blog-nav-item-right" id="about" data-container="body" title="用户个人信息" data-trigger="focus" data-placement="bottom" data-content='该用户主键是$!{user.id}, $!{user.gender}, $!{user.age}岁, 职业是$!{user.occupation}' href="#">About</a>
+          <a class="blog-nav-item blog-nav-item-right" href="${rc.contextPath}/similar-users-from-random">随机用户</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="blog-header">
+        <h1 class="blog-title">协同过滤推荐算法Demo</h1>
+        <p class="lead blog-description">与$!{user.id}使用习惯类似的用户</p>
+        <p class="lead blog-description"><a href="${rc.contextPath}/similar-users?fromUser=$!{user.id}">查看相似的用户</a></p>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>P.K.</th>
+                  <th>电影名称</th>
+                  <th>发布年份</th>
+                  <th>平均分数</th>
+                </tr>
+              </thead>
+              <tbody>
+				#foreach ($m in $movieList)
+                <tr>
+                  <th scope="row">$velocityCount</th>
+                  <td>$!{m.id}</td>
+                  <td><span class="glyphicon glyphicon-film"></span> $!{m.name}</td>
+                  <td>$!{m.year}</td>
+                  <td>$!{m.avgrating}</td>
+                </tr>
+                #end
+              </tbody>
+            </table>
+            
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+      </div><!-- /.row -->
+    </div>
+
+
+#parse("html/footer.vm")
