@@ -21,6 +21,8 @@
 				<property name="url" value="${url}" />
 				<property name="username" value="${username}" />
 				<property name="password" value="${password}" />
+				<property name="poolPingQuery" value="SELECT 1" />
+		                <property name="poolPingEnabled" value="true" />
 			</dataSource>
 		</environment>
 	</environments>
